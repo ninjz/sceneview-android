@@ -253,7 +253,7 @@ open class SceneView @JvmOverloads constructor(
         findViewTreeLifecycleOwner()?.lifecycle?.let { viewTreeLifecycle ->
             if (viewTreeLifecycle.currentState != Lifecycle.State.DESTROYED) {
                 viewTreeLifecycle.addObserver(parentLifecycleObserver)
-                if (lifecycle.currentState != viewTreeLifecycle.currentState) {
+                if (lifecycle.currentState != viewTreeLifecycle.currentState && lifecycle.currentState != Lifecycle.State.DESTROYED) {
                     lifecycle.currentState = viewTreeLifecycle.currentState
                 }
             }
