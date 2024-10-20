@@ -74,7 +74,9 @@ open class SceneView @JvmOverloads constructor(
     protected var sceneLifecycle: SceneLifecycle? = null
 
     private val parentLifecycleObserver = LifecycleEventObserver { _, event ->
-        lifecycle.currentState = event.targetState
+        if (lifecycle.currentState != Lifecycle.State.DESTROYED) {
+            lifecycle.currentState = event.targetState
+        }
     }
 
     override var _children = listOf<Node>()
